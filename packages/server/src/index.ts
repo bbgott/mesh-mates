@@ -51,7 +51,7 @@ wss.on('connection', (ws) => {
       // Update local state when client moves
       if (payload.type === 'MOVE') {
         players[id] = { ...players[id], ...payload.data };
-        // In a real app, you'd throttle this broadcast!
+        // TODO: Throttle this to avoid spamming updates when we have many players
         broadcast({ type: 'UPDATE', players: Object.values(players) });
       }
     } catch (e) {
